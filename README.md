@@ -15,13 +15,13 @@ This repository contains solutions for the interview test cases, including:
   Run Web Tests:
       npx wdio run .\wdio.conf.js --spec .\test\specs\duckSearch.spec.js
       
-####API Tests
+### API Tests
 The API test (Test Case 3) is implemented using Postman.
 
 Import the Postman collection file located in the api-tests/ folder.
 
 
-##### Improvements
+### Improvements
 Enhance error handling for flaky tests.
 Optimize locators for better performance in web tests.
 Implement CI/CD integration for automated testing.
