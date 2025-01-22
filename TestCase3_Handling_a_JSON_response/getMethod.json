@@ -1,0 +1,22 @@
+// Parse the JSON response
+let response = pm.response.json();
+
+// Function to extract and log Icon URLs
+const extractIconURLs = (topicsArray, parentKey = "Root") => {
+    topicsArray?.forEach((topic, index) => {
+        // Check if the topic has an Icon URL
+        let iconURL = topic.Icon?.URL;
+        if (iconURL) {
+            console.log(`Found Icon URL at ${parentKey}[${index}]: ${iconURL}`);
+            pm.test(`Icon URL is valid for ${parentKey}[${index}]`, () => {
+                pm.expect(iconURL).to.not.be.empty;
+            });
+        }
+
+        // Process nested Topics if they exist
+        extractIconURLs(topic.Topics, `${parentKey}[${index}].Topics`);
+    });
+};
+
+// Start with the RelatedTopics array
+extractIconURLs(response.RelatedTopics, "RelatedTopics") || console.log("No RelatedTopics found.");
